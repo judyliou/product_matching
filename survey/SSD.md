@@ -1,4 +1,3 @@
- $E=mc^2$ 
 ## Single Shot Detection (SSD)
 
 ##### Main Concept: 特徵分層提取
