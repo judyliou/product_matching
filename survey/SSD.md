@@ -31,14 +31,14 @@ Use VGG16 network as a base and convert fc6 and fc7 to conv. layers and add 4 co
 ### 4. Loss Function
 ![loss function](https://upload.cc/i1/2019/02/25/mAnQvs.png)
 - Parameters 
-  *  $`x:`$ $`x_{ij}^p = \lbrace 1,0 \rbrace`$ indicates whether _i_-th default box match to _j_-th ground truth box of category _p_.       
-  *  $`c:`$ confidences of multiple classes   
-  *  $`l:`$ predicted box     
-  *  $`g:`$ ground truth box  
-  *  $`\alpha`$ is set to 1    
-- The loss function consists of two terms: $`L_{conf}`$ and $`L_{loc}`$ where $`N`$ is the matched default boxes.   
-  *  $`L_{conf}`$ (Confidence Loss): Softmax loss over multiple classes confidences   
-  *  $`L_{loc}`$ (Localization Loss): Smooth L1 loss of the regression    
+  *  _x:_ $x_{ij}^p = \lbrace 1,0 \rbrace$ indicates whether _i_-th default box match to _j_-th ground truth box of category _p_.
+  *  _c:_ confidences of multiple classes
+  *  _l:_ predicted box
+  *  _g:_ ground truth box
+  *  _alpha_ is set to 1
+- The loss function consists of two terms: $L_{conf}$ and $L_{loc}$ where $N$ is the matched default boxes. 
+  *  $L_{conf}$ (Confidence Loss): Softmax loss over multiple classes confidences
+  *  $L_{loc}$ (Localization Loss): Smooth L1 loss of the regression
 
 
 
@@ -52,14 +52,13 @@ Use VGG16 network as a base and convert fc6 and fc7 to conv. layers and add 4 co
 - _Step 1:_ Matching each ground truth box to the default box with the best jaccard overlap (IOU).
 - _Step 2:_ Match default boxes to any ground truth with jaccard overlap higher than a threshold (0.5).
 <br/>
+#### 5.2 Scales and Aspect Ratios of Default Boxes
+##### Scale
+![scale](https://upload.cc/i1/2019/02/25/0ARhpN.png)
+- $S_k:$ scale of the boxes for the _k_-th feature map
+- $S_{min} = 0.2\ (scale\ of\ the\ lowest\ layer),S_{max} = 0.9\ (scale\ of\ the\ highest\ layer)$
 
-#### 5.2 Scales and Aspect Ratios of Default Boxes  
-##### Scale     
-![scale](https://upload.cc/i1/2019/02/25/0ARhpN.png)    
-- $`S_k:`$ scale of the boxes for the _k_-th feature map    
-- $`S_{min} = 0.2\ (scale\ of\ the\ lowest\ layer),S_{max} = 0.9\ (scale\ of\ the\ highest\ layer)`$        
-
-##### Ratio 
+##### Ratio
 - For each scale we have 5 non-square aspect ratios:
 <div align=left>  
 <img src="https://upload.cc/i1/2019/02/25/pgaZnK.png">
@@ -88,11 +87,12 @@ Training images are randomly sampled by one of the following options with **samp
 
 #### 5.5 Atrous Convolution (Hole Algotirhm / Dilated Convolution)     
 FC6 and FC7 use Atrous Convolution to **increase the receptive field while keeping the number of parameters same.**     
-<div align=left>  
+<div align=center>  
 <img src="https://upload.cc/i1/2019/02/25/sfcxhQ.gif" height="200">
 </div>  
 
 <br/>
+
 
 
 ### Reference:
