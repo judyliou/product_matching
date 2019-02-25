@@ -52,8 +52,9 @@ Use VGG16 network as a base and convert fc6 and fc7 to conv. layers and add 4 co
 - _Step 1:_ Matching each ground truth box to the default box with the best jaccard overlap (IOU).
 - _Step 2:_ Match default boxes to any ground truth with jaccard overlap higher than a threshold (0.5).
 <br/>
-#### 5.2 Scales and Aspect Ratios of Default Boxes
-##### Scale
+
+#### 5.2 Scales and Aspect Ratios of Default Boxes      
+##### Scale         
 ![scale](https://upload.cc/i1/2019/02/25/0ARhpN.png)
 - $S_k:$ scale of the boxes for the _k_-th feature map
 - $S_{min} = 0.2\ (scale\ of\ the\ lowest\ layer),S_{max} = 0.9\ (scale\ of\ the\ highest\ layer)$
